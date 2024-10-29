@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://fajarvuana:BpZ3gR5OTg7WwX7E@socialab.v2wjcsi.mongodb.net/account?retryWrites=true&w=majority',
+      'mongodb+srv://application:CodeLabs011013@socialabs-database.global.mongocluster.cosmos.azure.com/account?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000',
     ),
   ],
 })
