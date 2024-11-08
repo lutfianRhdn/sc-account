@@ -16,7 +16,7 @@ async function bootstrap() {
     Transport: Transport.TCP,
     options: {
       host: '0.0.0.0',
-      port: configService.get('TCP_PORT'),
+      port: configService.get('TCP_PORT') ,
     },
   });
   app.useGlobalPipes(
@@ -32,6 +32,8 @@ async function bootstrap() {
     }),
   );
   await app.startAllMicroservices();
-  await app.listen(configService.get('HTTP_PORT'));
+
+  console.log('port',configService.get('HTTP_PORT'));
+  await app.listen(configService.get('HTTP_PORT') || 3000);
 }
 bootstrap();
