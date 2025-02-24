@@ -32,6 +32,6 @@ async function bootstrap() {
     }),
   );
   await app.startAllMicroservices();
-  await app.listen(configService.get('HTTP_PORT'));
+  await app.listen(configService.get('HTTP_PORT') || 3000);
 }
 bootstrap();
