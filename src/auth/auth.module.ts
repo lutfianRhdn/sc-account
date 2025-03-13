@@ -8,6 +8,9 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RtStrategy } from './strategies/rt.strategy';
+import { AuthResolver } from './auth.resolver';
+import { GqlLocalAuthGuard } from './guards/gql-local-auth.guard';
+import { GqlLocalStrategy } from './strategies/ql-local.strategy';
 @Module({
   imports: [
     UserModule,
@@ -19,7 +22,7 @@ import { RtStrategy } from './strategies/rt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, RtStrategy],
+  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, RtStrategy, GqlLocalAuthGuard, GqlLocalStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

@@ -49,6 +49,9 @@ export class AuthResponse {
 
   @Field(() => UserType)
   user: UserType;
+
+  @Field()
+  message: string;
 }
 
 @ObjectType()

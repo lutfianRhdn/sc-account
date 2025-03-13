@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
-      context: ({ req }) => {
+      context: ({ req, res }) => {
         const authHeader = req.headers.authorization;
 
         if (authHeader) {
@@ -21,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
           };
         }
 
-        return { req };
+        return { req, res };
       },
       formatError: (error) => {
         console.error('GraphQL Error:', error);
