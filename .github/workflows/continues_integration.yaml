@@ -3,7 +3,7 @@ name: Build and Deploy to Azure Container Apps
 on:
   push:
     branches:
-      - main
+      - graphql
 
 jobs:
   build:
@@ -24,6 +24,6 @@ jobs:
     - name: Build and push Docker image
       run: |
         echo "Building Image with Tag {{github.sha}}, lastest"
-        docker build -t ${{secrets.AZURE_ECR_HUB}}/account:${{ github.sha }} -t ${{secrets.AZURE_ECR_HUB}}/account:latest .
+        docker build -t ${{secrets.AZURE_ECR_HUB}}/account:${{ github.sha }} -t ${{secrets.AZURE_ECR_HUB}}/account:latest-gql .
         echo "Push Image to Azure Container Registry ......."
         docker push ${{secrets.AZURE_ECR_HUB}}/account --all-tags
