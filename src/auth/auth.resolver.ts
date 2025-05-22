@@ -11,7 +11,7 @@ import { GqlLocalAuthGuard } from './guards/gql-local-auth.guard';
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => AuthResponse)
+  @Mutation('login')
   @UseGuards(GqlLocalAuthGuard)
   async login(
     @Args('email') email: string,
@@ -38,7 +38,7 @@ export class AuthResolver {
     };
   }
 
-  @Mutation(() => AuthResponse)
+  @Mutation('register')
   async register(
     @Args('email') email: string,
     @Args('name') name: string,
@@ -71,7 +71,7 @@ export class AuthResolver {
     return true;
   }
 
-  @Query(() => UserType)
+  @Query('currentUser')
   @UseGuards(GqlAuthGuard)
   async currentUser(@Context() context: { req: any }) {
     return context.req.user;

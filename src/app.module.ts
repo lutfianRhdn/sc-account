@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
@@ -10,13 +10,11 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
-      autoSchemaFile: {
-        federation: 2,
-      },
+      typePaths: ['./**/*.graphql'],
+      playground: true,
+      introspection: true,
       context: ({ req, res }) => {
         const authHeader = req.headers.authorization;
-
-        console.log(authHeader);
 
         if (authHeader) {
           return {

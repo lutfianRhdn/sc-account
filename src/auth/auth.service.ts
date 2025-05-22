@@ -64,7 +64,6 @@ export class AuthService {
   }
 
   async generateToken(user: User) {
-    console.log(user);
     const payload = { email: user.email, name: user.name, _id: user._id };
     const token = {
       accessToken: this.jwtService.sign(payload, { expiresIn: '1h' }),

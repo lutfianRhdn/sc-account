@@ -17,7 +17,7 @@ import { GqlLocalStrategy } from './strategies/ql-local.strategy';
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '12h' },
       global: true,
     }),
   ],
