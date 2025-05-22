@@ -52,7 +52,11 @@ export class AuthController {
   @Post('register')
   async register(@Body() request: RegisterRequest) {
     const { email, name, password, confirmPassword } = request;
-    await this.authService.register({ email, name, password, confirmPassword });
+    // await this.authService.register({ email, name, password, confirmPassword });
+    // set timeout(() => {
+
+    await new Promise((resolve) => setTimeout(resolve, 320));
+
     return { message: 'User created successfully' };
   }
 
