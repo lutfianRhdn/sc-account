@@ -2,8 +2,8 @@ type User {
   _id: ID!
   email: String!
   name: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: String!
+  updatedAt: String!
 }
 
 type CurrentUser {
@@ -12,14 +12,13 @@ type CurrentUser {
   name: String!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type AuthResponse {
   accessToken: String!
   user: User!
+  message: String!
+}
+
+type Message {
   message: String!
 }
 
@@ -29,7 +28,7 @@ type Query {
 
 type Mutation {
   login(email: String!, password: String!): AuthResponse!
-  register(email: String!, name: String!, password: String!, confirmPassword: String!): message: String!
+  register(email: String!, name: String!, password: String!, confirmPassword: String!): Message!
   generateToken: AuthResponse!
   logout: Boolean!
 }
