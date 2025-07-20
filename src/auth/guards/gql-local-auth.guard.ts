@@ -11,11 +11,11 @@ export class GqlLocalAuthGuard extends AuthGuard('gql-local') {
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
     const gqlReq = ctx.getContext().req;
-    const { email, password } = ctx.getArgs();
+    const { input } = ctx.getArgs();
 
     gqlReq.body = {
-      email,
-      password,
+      email: input.email,
+      password: input.password,
     };
 
     return gqlReq;

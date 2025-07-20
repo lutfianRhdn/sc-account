@@ -13,11 +13,7 @@ export class AuthResolver {
 
   @Mutation('login')
   @UseGuards(GqlLocalAuthGuard)
-  async login(
-    @Args('email') email: string,
-    @Args('password') password: string,
-    @Context() context: { req: any; res: Response },
-  ) {
+  async login(@Args('input') input: LoginInput, @Context() context: { req: any; res: Response }) {
     const user = context.req.user;
     const tokens = await this.authService.login(user);
 
@@ -39,13 +35,8 @@ export class AuthResolver {
   }
 
   @Mutation('register')
-  async register(
-    @Args('email') email: string,
-    @Args('name') name: string,
-    @Args('password') password: string,
-    @Args('confirmPassword') confirmPassword: string,
-  ) {
-    await this.authService.register({ email, name, password, confirmPassword });
+  async register(@Args('input') input: RegisterInput) {
+    await this.authService.register(input);
     return {
       message: 'User created successfully',
     };
