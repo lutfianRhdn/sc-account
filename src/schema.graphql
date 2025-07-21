@@ -6,7 +6,7 @@ type User {
   updatedAt: String!
 }
 
-type CurrentUser {
+type CurrentUserResponse {
   _id: ID!
   email: String!
   name: String!
@@ -23,12 +23,22 @@ type Message {
 }
 
 type Query {
-  currentUser: CurrentUser!
+  currentUser: CurrentUserResponse!
 }
 
 type Mutation {
-  login(email: String!, password: String!): AuthResponse!
-  register(email: String!, name: String!, password: String!, confirmPassword: String!): Message!
-  generateToken: AuthResponse!
-  logout: Boolean!
+  login(input: LoginInput!): AuthResponse!
+  register(input: RegisterInput!): Message!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RegisterInput {
+  email: String!
+  name: String!
+  password: String!
+  confirmPassword: String!
 }
