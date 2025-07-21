@@ -42,26 +42,6 @@ export class AuthResolver {
     };
   }
 
-  @Mutation(() => AuthResponse)
-  @UseGuards(GqlRtAuthGuard)
-  async generateToken(@Context() context: { req: any }) {
-    const user = context.req.user;
-    const tokens = await this.authService.generateToken(user);
-
-    return {
-      message: 'Token generated successfully',
-      accessToken: tokens.accessToken,
-    };
-  }
-
-  @Mutation(() => Boolean)
-  @UseGuards(GqlRtAuthGuard)
-  async logout(@Context() context: { req: any }) {
-    const { sub } = context.req.user;
-    await this.authService.logout(sub);
-    return true;
-  }
-
   @Query('currentUser')
   @UseGuards(GqlAuthGuard)
   async currentUser(@Context() context: { req: any }) {
