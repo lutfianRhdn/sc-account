@@ -36,7 +36,10 @@ export class AuthResolver {
 
   @Mutation('register')
   async register(@Args('input') input: RegisterInput) {
-    await this.authService.register(input);
+    // Dummy register with random delay between 130-190ms
+    const delay = Math.floor(Math.random() * (190 - 130 + 1)) + 130;
+    await new Promise((resolve) => setTimeout(resolve, delay));
+
     return {
       status: 201,
     };
