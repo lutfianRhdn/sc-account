@@ -19,7 +19,7 @@ type AuthResponse {
 }
 
 type Message {
-  message: String!
+  status: Int!
 }
 
 type Query {

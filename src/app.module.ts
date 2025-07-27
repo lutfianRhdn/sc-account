@@ -19,6 +19,7 @@ import { ConfigModule } from '@nestjs/config';
         if (authHeader) {
           return {
             req,
+            res,
             token: authHeader.replace('Bearer ', ''),
           };
         }

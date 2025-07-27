@@ -38,7 +38,7 @@ export class AuthResolver {
   async register(@Args('input') input: RegisterInput) {
     await this.authService.register(input);
     return {
-      message: 'User created successfully',
+      status: 201,
     };
   }
 
